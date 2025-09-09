@@ -114,7 +114,7 @@ const Dashboard = () => {
             description: form.description,
             amount: Number(form.amount),
             type: form.type,
-            category: form.type === "expense" ? form.category : "Income",
+            category: form.type === "expense" ? form.category : "-----",
           },
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -132,7 +132,7 @@ const Dashboard = () => {
             description: form.description,
             amount: Number(form.amount),
             type: form.type,
-            category: form.type === "expense" ? form.category : "Income",
+            category: form.type === "expense" ? form.category : "-----",
           },
           { headers: { Authorization: `Bearer ${token}` } }
         );
