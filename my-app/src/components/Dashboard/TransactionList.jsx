@@ -77,7 +77,7 @@ const TransactionList = ({
         <button
           onClick={handleDownload}
           disabled={downloading}
-          className={`w-full sm:w-auto flex items-center justify-center gap-2 font-semibold px-4 py-2 rounded-xl shadow-md transition-all duration-300
+          className={`w-full sm:w-auto flex items-center justify-center gap-2 font-semibold px-4 py-2 rounded-xl shadow-md transition-all duration-300 cursor-pointer
             ${
               downloading
                 ? "bg-gray-400 text-white cursor-not-allowed"
@@ -162,7 +162,7 @@ const TransactionList = ({
                       <div className="flex justify-center gap-2 flex-wrap">
                         <button
                           onClick={() => startEdit(t)}
-                          className="px-3 py-1 text-sm bg-blue-500 text-white rounded-xl hover:bg-blue-600"
+                          className="px-3 py-1 text-sm bg-blue-500 text-white rounded-xl hover:bg-blue-600 cursor-pointer"
                         >
                           Edit
                         </button>
@@ -171,7 +171,7 @@ const TransactionList = ({
                             setDeleteId(t._id);
                             setShowConfirm(true);
                           }}
-                          className="px-3 py-1 text-sm bg-red-500 text-white rounded-xl hover:bg-red-600"
+                          className="px-3 py-1 text-sm bg-red-500 text-white rounded-xl hover:bg-red-600 cursor-pointer"
                         >
                           Delete
                         </button>

@@ -71,7 +71,7 @@ const Navigation = () => {
                 <button
                   onClick={handleLogoutRedirect}
                   type="button"
-                  className="px-4 py-2 border border-indigo-600 text-indigo-600 rounded-lg hover:bg-indigo-600 hover:text-white transition"
+                  className="px-4 py-2 border border-indigo-600 text-indigo-600 rounded-lg hover:bg-indigo-600 hover:text-white transition cursor-pointer"
                 >
                   Logout
                 </button>
@@ -82,7 +82,7 @@ const Navigation = () => {
                   <button
                     onClick={handleSignupRedirect}
                     type="button"
-                    className="px-4 py-2 border border-indigo-600 text-indigo-600 rounded-lg hover:bg-indigo-600 hover:text-white transition"
+                    className="px-4 py-2 border border-indigo-600 text-indigo-600 rounded-lg hover:bg-indigo-600 hover:text-white transition cursor-pointer"
                   >
                     SignUp
                   </button>
@@ -91,7 +91,7 @@ const Navigation = () => {
                   <button
                     onClick={handleLoginRedirect}
                     type="button"
-                    className="px-4 py-2 border border-indigo-600 text-indigo-600 rounded-lg hover:bg-indigo-600 hover:text-white transition"
+                    className="px-4 py-2 border border-indigo-600 text-indigo-600 rounded-lg hover:bg-indigo-600 hover:text-white transition cursor-pointer"
                   >
                     Login
                   </button>

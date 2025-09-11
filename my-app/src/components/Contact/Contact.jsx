@@ -121,7 +121,7 @@ const Contact = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`w-full font-semibold py-2 px-4 rounded-lg transition duration-300 
+              className={`w-full font-semibold py-2 px-4 rounded-lg transition duration-300 cursor-pointer
                 ${
                   isSubmitting
                     ? "bg-gray-400 cursor-not-allowed"
