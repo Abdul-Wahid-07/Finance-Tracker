@@ -10,6 +10,7 @@ const Contact = () => {
     email: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const { user, isLoggedIn } = useAuth();
@@ -30,6 +31,7 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
     try {
       const res = await axios.post(`${API_URL}/api/auth/contact`, formData, {
@@ -41,13 +43,15 @@ const Contact = () => {
       if (res.status === 200) {
         toast.success("Message sent successfully");
         setFormData({
-          username: user.username || "",
-          email: user.email || "",
+          username: user?.username || "",
+          email: user?.email || "",
           message: "",
         });
       }
     } catch (error) {
       toast.error(error.response?.data?.message || "Error sending message");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -60,8 +64,8 @@ const Contact = () => {
             Contact Us
           </h1>
           <p className="text-center text-gray-600 mb-8">
-            Have questions or feedback about our Personal Finance Tracker?
-            We’d love to hear from you!
+            Have questions or feedback about our Personal Finance Tracker? We’d
+            love to hear from you!
           </p>
 
           <form className="space-y-6" onSubmit={handleSubmit}>
@@ -116,9 +120,15 @@ const Contact = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-300"
+              disabled={isSubmitting}
+              className={`w-full font-semibold py-2 px-4 rounded-lg transition duration-300 
+                ${
+                  isSubmitting
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : "bg-indigo-600 hover:bg-indigo-700 text-white"
+                }`}
             >
-              Send Message
+              {isSubmitting ? "Sending..." : "Send Message"}
             </button>
           </form>
 

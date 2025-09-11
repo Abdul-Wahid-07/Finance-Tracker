@@ -35,6 +35,7 @@ const TransactionList = ({
   // Current month index
   const [currentMonthIndex, setCurrentMonthIndex] = useState(0);
   const [expandedMonths, setExpandedMonths] = useState({});
+  const [downloading, setDownloading] = useState(false);
 
   const currentMonth = months[currentMonthIndex];
   const txns = grouped[currentMonth] || [];
@@ -59,17 +60,32 @@ const TransactionList = ({
     }));
   };
 
+  const handleDownload = async () => {
+    try {
+      setDownloading(true);
+      await downloadPDF();
+    } finally {
+      setDownloading(false);
+    }
+  };
+
   return (
     <div className="bg-white shadow-lg rounded-2xl p-4 lg:col-span-2">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 gap-2">
         <h2 className="text-lg font-semibold">Recent Transactions</h2>
         <button
-          onClick={downloadPDF}
-          className="w-full sm:w-auto cursor-pointer flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-semibold px-4 py-2 rounded-xl shadow-md hover:from-blue-700 hover:to-blue-600 transition-all duration-300"
+          onClick={handleDownload}
+          disabled={downloading}
+          className={`w-full sm:w-auto flex items-center justify-center gap-2 font-semibold px-4 py-2 rounded-xl shadow-md transition-all duration-300
+            ${
+              downloading
+                ? "bg-gray-400 text-white cursor-not-allowed"
+                : "bg-gradient-to-r from-blue-600 to-blue-500 text-white hover:from-blue-700 hover:to-blue-600"
+            }`}
         >
           <Download className="w-5 h-5" />
-          <span>Download PDF</span>
+          <span>{downloading ? "Downloading..." : "Download PDF"}</span>
         </button>
       </div>
 

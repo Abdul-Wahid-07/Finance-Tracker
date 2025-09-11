@@ -17,6 +17,8 @@ const SignupPage = () => {
   });
 
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,6 +33,7 @@ const SignupPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
       const response = await axios.post(
@@ -57,6 +60,8 @@ const SignupPage = () => {
       }
     } catch (error) {
       toast.error(error.response?.data?.message || "Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -155,9 +160,14 @@ const SignupPage = () => {
           {/* Submit button */}
           <button
             type="submit"
-            className="w-full bg-indigo-500 hover:bg-indigo-600 text-white py-2 rounded-lg font-semibold transition duration-200"
+            disabled={loading}
+            className={`w-full bg-indigo-500 hover:bg-indigo-600 text-white py-2 rounded-lg font-semibold transition duration-200 ${
+              loading
+                ? "bg-gray-400 text-white cursor-not-allowed"
+                : "bg-indigo-500 hover:bg-indigo-600 text-white"
+            }`}
           >
-            Sign Up
+            {loading ? "Signing up..." : "Sign Up"}
           </button>
 
           {/* Login link */}
