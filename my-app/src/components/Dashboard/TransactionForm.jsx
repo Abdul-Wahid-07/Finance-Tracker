@@ -27,53 +27,92 @@ const TransactionForm = ({
       </h2>
       <form
         onSubmit={onSubmit}
-        className="grid grid-cols-1 md:grid-cols-4 gap-4"
+        className="grid grid-cols-1 md:grid-cols-2 gap-4"
       >
-        <h3>Description</h3>
-        <input
-          type="text"
-          name="description"
-          placeholder="Description"
-          value={form.description}
-          onChange={handleChange}
-          required
-          className="border rounded-xl p-2"
-        />
-        <h3>Amount</h3>
-        <input
-          type="number"
-          name="amount"
-          placeholder="Amount"
-          value={form.amount}
-          onChange={handleChange}
-          required
-          className="border rounded-xl p-2"
-          min={1}
-        />
-        <h3>Type</h3>
-        <select
-          name="type"
-          value={form.type}
-          onChange={handleChange}
-          className="border rounded-xl p-2 cursor-pointer"
-        >
-          <option value="income">Income</option>
-          <option value="expense">Expense</option>
-        </select>
-        {form.type === "expense" && (
-          <>
-          <h3>Category</h3>
+        {/* Description */}
+        <div className="flex flex-col">
+          <label
+            htmlFor="description"
+            className="text-sm font-medium text-gray-700 mb-1"
+          >
+            Description
+          </label>
           <input
+            id="description"
             type="text"
-            name="category"
-            placeholder="Category (Food, Rent, etc.)"
-            value={form.category}
+            name="description"
+            placeholder="Description"
+            value={form.description}
             onChange={handleChange}
+            required
             className="border rounded-xl p-2"
           />
-          </>
+        </div>
+
+        {/* Amount */}
+        <div className="flex flex-col">
+          <label
+            htmlFor="amount"
+            className="text-sm font-medium text-gray-700 mb-1"
+          >
+            Amount
+          </label>
+          <input
+            id="amount"
+            type="number"
+            name="amount"
+            placeholder="Amount"
+            value={form.amount}
+            onChange={handleChange}
+            required
+            className="border rounded-xl p-2"
+            min={1}
+          />
+        </div>
+
+        {/* Type */}
+        <div className="flex flex-col">
+          <label
+            htmlFor="type"
+            className="text-sm font-medium text-gray-700 mb-1"
+          >
+            Type
+          </label>
+          <select
+            id="type"
+            name="type"
+            value={form.type}
+            onChange={handleChange}
+            className="border rounded-xl p-2 cursor-pointer"
+          >
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
+          </select>
+        </div>
+
+        {/* Category (only for expense) */}
+        {form.type === "expense" && (
+          <div className="flex flex-col">
+            <label
+              htmlFor="category"
+              className="text-sm font-medium text-gray-700 mb-1"
+            >
+              Category
+            </label>
+            <input
+              id="category"
+              type="text"
+              name="category"
+              placeholder="Category (Food, Rent, etc.)"
+              value={form.category}
+              onChange={handleChange}
+              className="border rounded-xl p-2"
+            />
+          </div>
         )}
-        <div className="flex gap-2 md:col-span-4">
+
+        {/* Buttons */}
+        <div className="flex gap-2 md:col-span-2">
           <button
             type="submit"
             disabled={loading}
