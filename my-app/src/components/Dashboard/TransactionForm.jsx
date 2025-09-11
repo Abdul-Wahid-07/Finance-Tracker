@@ -29,6 +29,7 @@ const TransactionForm = ({
         onSubmit={onSubmit}
         className="grid grid-cols-1 md:grid-cols-4 gap-4"
       >
+        <h3>Description</h3>
         <input
           type="text"
           name="description"
@@ -38,6 +39,7 @@ const TransactionForm = ({
           required
           className="border rounded-xl p-2"
         />
+        <h3>Amount</h3>
         <input
           type="number"
           name="amount"
@@ -48,6 +50,7 @@ const TransactionForm = ({
           className="border rounded-xl p-2"
           min={1}
         />
+        <h3>Type</h3>
         <select
           name="type"
           value={form.type}
@@ -58,6 +61,8 @@ const TransactionForm = ({
           <option value="expense">Expense</option>
         </select>
         {form.type === "expense" && (
+          <>
+          <h3>Category</h3>
           <input
             type="text"
             name="category"
@@ -66,6 +71,7 @@ const TransactionForm = ({
             onChange={handleChange}
             className="border rounded-xl p-2"
           />
+          </>
         )}
         <div className="flex gap-2 md:col-span-4">
           <button
