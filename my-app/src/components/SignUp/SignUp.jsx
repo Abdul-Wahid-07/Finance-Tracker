@@ -12,7 +12,7 @@ const SignupPage = () => {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
-    income: 0,
+    income: "",
     password: "",
   });
 
@@ -22,7 +22,10 @@ const SignupPage = () => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: name === "income" ? Number(value) : value,
+      [name]:
+        name === "income"
+          ? value === "" ? "" : Number(value) // keep empty string until valid
+          : value,
     });
   };
 
@@ -46,7 +49,7 @@ const SignupPage = () => {
         setFormData({
           username: "",
           email: "",
-          income: 0,
+          income: "",
           password: "",
         });
 
@@ -121,9 +124,9 @@ const SignupPage = () => {
               value={formData.income}
               onChange={handleChange}
               required
-              min={0}
               className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-400 outline-none"
               placeholder="25000"
+              min={0}
             />
           </div>
 
