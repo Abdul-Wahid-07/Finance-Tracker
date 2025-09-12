@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useAuth } from "../Auth/Auth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { toast } from "react-toastify";
+import Image from "next/image";
 
 const LoginPage = () => {
   const router = useRouter();
@@ -61,7 +62,14 @@ const LoginPage = () => {
   return (
     <div className="flex min-h-screen bg-gray-50">
       {/* Left side (illustration) */}
-      <div className="hidden lg:flex w-1/2 bg-gradient-to-br from-indigo-500 to-purple-600 items-center justify-center">
+      <div className="hidden lg:flex w-1/2 bg-gradient-to-br from-indigo-500 to-purple-600 items-center justify-center flex-col space-y-6">
+        <Image
+          src="/logo.png"
+          alt="Finance Tracker Logo"
+          width={100}
+          height={100}
+          className="rounded-full"
+        />
         <h1 className="text-white text-4xl font-bold px-8 text-center">
           Welcome Back!
           <span className="block text-lg font-light mt-3">

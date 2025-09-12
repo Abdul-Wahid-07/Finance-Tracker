@@ -1,5 +1,6 @@
 "use client";
 import axios from "axios";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -68,7 +69,14 @@ const SignupPage = () => {
   return (
     <div className="flex min-h-screen bg-gray-50">
       {/* Left side (illustration) */}
-      <div className="hidden lg:flex w-1/2 bg-gradient-to-br from-indigo-500 to-purple-600 items-center justify-center">
+      <div className="hidden lg:flex w-1/2 bg-gradient-to-br from-indigo-500 to-purple-600 items-center justify-center flex-col space-y-6">
+        <Image
+          src="/logo.png"
+          alt="Finance Tracker Logo"
+          width={100}
+          height={100}
+          className="rounded-full"
+        />
         <h1 className="text-white text-4xl font-bold px-8 text-center">
           Welcome to Personal Finance Tracker
           <span className="block text-lg font-light mt-3">
@@ -76,6 +84,7 @@ const SignupPage = () => {
           </span>
         </h1>
       </div>
+
 
       {/* Right side (form) */}
       <div className="flex w-full lg:w-1/2 justify-center items-center p-6">
