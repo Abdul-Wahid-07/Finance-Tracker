@@ -1,8 +1,19 @@
 "use client";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
+import dynamic from "next/dynamic";
 import { toast } from "react-toastify";
 import { useAuth } from "../Auth/Auth";
+
+// Lazy load Map component (client-only)
+const Map = dynamic(() => import("../Map/Map"), {
+  ssr: false,
+  loading: () => (
+    <div className="flex items-center justify-center w-full h-[300px] md:h-auto">
+      <div className="w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+    </div>
+  ),
+});
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -143,16 +154,8 @@ const Contact = () => {
           </div>
         </div>
 
-        {/* Google Map */}
-        <div className="w-full h-[300px] md:h-auto">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.797146954139!2d72.87783317395099!3d19.072654452080013!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c9598ad468b5%3A0xa355e25756e9a44f!2sCode4Bharat!5e0!3m2!1sen!2sin!4v1757401395989!5m2!1sen!2sin"
-            className="w-full h-full rounded-2xl border-0"
-            allowFullScreen=""
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          />
-        </div>
+        {/* Google Map (Lazy Loaded) */}
+        <Map />
       </div>
     </main>
   );
